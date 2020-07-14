@@ -5,7 +5,7 @@
 ### flex, before, after, transition, transform, overflow, fontawesome 사용
 #### 요소의 앞뒤를 디자인하는 가상클래스 before, after
 
-<img width="80%" src="https://j.gifs.com/vlB9N8.gif" />
+<img width="70%" src="https://j.gifs.com/vlB9N8.gif" />
 
 
 ## 2. 코드 분석
@@ -86,11 +86,7 @@ a {
   
   : `overflow: hidden`으로 설정하여, `a`의 자식인 `before`의 넘친 부분을 없앰
   
-  <img  width="150%" src="https://postfiles.pstatic.net/MjAyMDA3MTRfMjU4/MDAxNTk0NzExNjE5MzE3.wnl2VJe1ng9WmMsnsXhRgGBh7b58EX18UEZMQxKtTXsg.LpNeZqoib8obm0bqRnORMzjvw8GehummTCiiMX61A_sg.PNG.rmawjdals/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2020-07-09_%EC%98%A4%ED%9B%84_8.53.13.png?type=w580"/>
-  
-  
-  : 네모모양을 부모와 같은 둥글며 겉선이 흰색인 상태로 하기 위해) 
-    자식의 넘치는 부분을 숨기게 함*/
+  <img src="./test3/1.png"/>
   
 ```css
 .sns{
@@ -116,6 +112,83 @@ a {
 
     position: relative;  /* 가상 자식요소인 before의 위치 고정*/
     overflow: hidden;    /* before의 부모인 a태그의 overflow : hidden 설정*/
+}
+    
+```
+
+<br/>
+
+#### (4) a태그의 가상자식 클래스 before
+
+-`left:0`, `top:0`을 해서 가상클래스가 부모위에 겹쳐있게 함
+
+- `bottom:0`으로 주어, 밑에서부터 변화가 나타나게 함 
+
+- heignt가 0이었다가 100%로 되면 되는 구조로 만듬
+
+<img src="./test3/2.png"/>
+  
+```css
+.sns a:before {
+    content : '';
+    position: absolute;
+    width: 100%;
+    height: 0%;  
+    left : 0;           /*(가상클래스는 부모요소위에 겹쳐있음)*/
+    bottom: 0;
+    background-color: blue;
+    transition: 0.5s;  /*before에서 이벤트 발생시 0.5초동안 이벤트가 발생하게 함*/
+    
+
+}
+
+.sns a:hover:before{
+    height: 100%;
+}
+    
+```
+
+
+<br/>
+
+#### (5) before별로 다른 배경색 부여
+
+- `transform: rotateY(360deg)`를 주어 `hover`시 글자가 회전하게 함
+```css
+.sns a:nth-child(1):before{
+    background-color: #3b5999;
+}
+
+.sns a:nth-child(2):before{
+    background-color: #55acee;
+    
+}
+
+.sns a:nth-child(3):before{
+    background-color: #dd4b39;
+    
+}
+
+.sns a:nth-child(4):before{
+    background-color: #0077B5;
+    
+}
+
+.sns a:nth-child(5):before{
+    background-color: #e4405f;
+    
+}
+
+/* i태그의 아이콘에 relative를 주면, 글자가 나옴*/
+.sns a .fa {
+    position: relative;
+    transition: 0.5s;  /*i태그에 효과발생시 0.5동안 발생시킴*/
+}
+
+/* i아이콘의 글자를 회전시킴 */
+.sns a:hover .fa{
+    transform: rotateY(360deg);
+    color : white;
 }
     
 ```
